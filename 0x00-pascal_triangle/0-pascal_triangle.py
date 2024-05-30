@@ -1,23 +1,24 @@
 #!/usr/bin/python3
-'''Module to return pascal triangle'''
+'''Module to return Pascal's triangle'''
 
 
 def pascal_triangle(n):
     '''
     Pascal's triangle
     Args:
-      n (int): The number of rows of the triangle
+        n (int): The number of rows of the triangle
     Returns:
-      List of lists of integers representing the Pascal’s triangle
+        List of lists of integers representing the Pascal’s triangle
     '''
-    lists = []
-    if n == 0:
-        return lists
+    if n <= 0:
+        return []
+
+    triangle = []
+
     for i in range(n):
-        lists.append([])
-        lists[i].append(1)
-        if (i > 0):
-            for j in range(1, i):
-                lists[i].append(lists[i - 1][j - 1] + lists[i - 1][j])
-            lists[i].append(1)
-    return lists
+        row = [1] * (i + 1)  # Create a row with 'i+1' ones
+        for j in range(1, i):
+            row[j] = triangle[i - 1][j - 1] + triangle[i - 1][j]
+        triangle.append(row)
+
+    return triangle
