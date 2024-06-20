@@ -29,13 +29,13 @@ try:
 
         try:
             size += int(stlist[-1])
-        except ValueError:
+        except (ValueError, IndexError):
             pass
 
         try:
             if stlist[-2] in sts:
                 sts[stlist[-2]] += 1
-        except ValueError:
+        except IndexError:
             pass
     printsts(sts, size)
 
